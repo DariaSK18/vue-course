@@ -9,12 +9,48 @@
       <input type="number" placeholder="min" />
       <input type="number" placeholder="max" />
     </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Experience</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="driver in getItemsData" :key="driver.id">
+          <td>{{ driver.name }}</td>
+          <td class="box">
+            {{ driver.experience }}
+            <div aria-label="edit" class="icon">✎</div>
+            <div
+              aria-label="delete"
+              class="icon"
+              @click="deleteItem(driver.id)"
+            >
+              ❌
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- {{ getItemsData }} -->
   </div>
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex";
+import { drivers } from "../constants/depotData";
 export default {
   name: "DriversView",
+  computed: {
+    ...mapGetters("driversStore", ["getItemsData"]),
+  },
+  methods: {
+    ...mapActions("driversStore", ["loadItemsData", "deleteItem"]),
+  },
+  created() {
+    this.loadItemsData(drivers);
+  },
 };
 </script>
 
@@ -22,5 +58,21 @@ export default {
 .filter {
   display: flex;
   gap: 10px;
+}
+.box {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+}
+tr {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding: 10px;
+}
+table {
+  width: 300px;
 }
 </style>

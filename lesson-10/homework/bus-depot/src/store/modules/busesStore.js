@@ -1,21 +1,10 @@
-import { buses } from "@/constants/depotData";
+// import { buses } from "@/constants/depotData";
+import { state, getters, mutations, actions } from "../helpers/generalStore";
 
 export default {
   namespaced: true,
-  state: () => ({
-    // busesList: [],
-  }),
-  getters: {
-    // getSellersData: (state) => state.sellersList,
-  },
-  mutations: {
-    // setSellersData(state, sellers) {
-    //   state.sellersList = sellers;
-    // },
-  },
-  actions: {
-    // loadSellersData({ commit }) {
-    //   commit("setSellersData", sellers);
-    // },
-  },
+  state,
+  getters,
+  mutations,
+  actions,
 };
