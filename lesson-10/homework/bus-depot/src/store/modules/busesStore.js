@@ -1,4 +1,3 @@
-// import { buses } from "@/constants/depotData";
 import { state, getters, mutations, actions } from "../helpers/generalStore";
 
 export default {

@@ -21,7 +21,17 @@
           <td>{{ driver.name }}</td>
           <td class="box">
             {{ driver.experience }}
-            <div aria-label="edit" class="icon">✎</div>
+            <router-link
+              :to="{
+                name: 'editDriver',
+                params: {
+                  id: driver.id,
+                },
+              }"
+              aria-label="edit"
+              class="icon"
+              >✎</router-link
+            >
             <div
               aria-label="delete"
               class="icon"
@@ -33,13 +43,19 @@
         </tr>
       </tbody>
     </table>
-    <!-- {{ getItemsData }} -->
+    <router-link
+      :to="{
+        name: 'editDriver',
+      }"
+      class="button-add"
+      >Add New Driver</router-link
+    >
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-import { drivers } from "../constants/depotData";
+import { drivers } from "../../constants/depotData";
 export default {
   name: "DriversView",
   computed: {
@@ -74,5 +90,17 @@ tr {
 }
 table {
   width: 300px;
+}
+.icon {
+  cursor: pointer;
+}
+.button-add {
+  padding: 10px;
+  border: 1px solid black;
+  color: black;
+  text-decoration: none;
+}
+table {
+  margin: 30px 10px;
 }
 </style>
