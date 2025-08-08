@@ -32,7 +32,7 @@
 import { mapActions, mapGetters } from "vuex";
 import { drivers } from "../../constants/depotData";
 export default {
-  name: "DriverInfo",
+  name: "DriverEdit",
   data() {
     return {
       driverData: {
@@ -58,9 +58,9 @@ export default {
     ]),
     onSave() {
       if (!this.driverId) {
-        this.addNewItem(this.driverData);
+        this.addNewItem({ arrayName: "itemsList", itemData: this.driverData });
       } else {
-        this.updateItem(this.driverData);
+        this.updateItem({ arrayName: "itemsList", itemData: this.driverData });
       }
       this.$router.push({ name: "drivers" });
     },

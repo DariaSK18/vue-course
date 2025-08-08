@@ -1,8 +1,13 @@
 export const state = () => ({
   itemsList: [],
+  filteredList: [],
+  assignedPairsList: [],
 });
 export const getters = {
-  getItemsData: ({ itemsList }) => itemsList,
+  // getItemsData: ({ itemsList }) => itemsList,
+  getItemsData: (state) =>
+    state.filteredList.length ? state.filteredList : state.itemsList,
+  getAssignedPairsList: ({ assignedPairsList }) => assignedPairsList,
   getItemById:
     ({ itemsList }) =>
     (itemId) =>
@@ -11,35 +16,53 @@ export const getters = {
 export const mutations = {
   setItemsData(state, dataList) {
     state.itemsList = dataList;
+    state.filteredList = dataList;
   },
-  deleteItem(state, itemId) {
-    const itemIndex = state.itemsList.findIndex((item) => item.id == itemId);
-    if (itemIndex !== -1) state.itemsList.splice(itemIndex, 1);
+  deleteItem(state, { arrayName, itemId }) {
+    const itemIndex = state[arrayName].findIndex((item) => item.id == itemId);
+    if (itemIndex !== -1) state[arrayName].splice(itemIndex, 1);
   },
-  addNewItem(state, itemData) {
-    state.itemsList.push({
+  addNewItem(state, { arrayName, itemData }) {
+    state[arrayName].push({
       id: crypto.randomUUID(),
       ...itemData,
     });
   },
-  updateItem(state, itemData) {
-    const currentIndex = state.itemsList.findIndex(
+  updateItem(state, { arrayName, itemData }) {
+    const currentIndex = state[arrayName].findIndex(
       (item) => itemData.id === item.id
     );
-    state.itemsList[currentIndex] = itemData;
+    state[arrayName][currentIndex] = itemData;
+  },
+  filterItems(state, itemObject) {
+    state.filteredList = state.itemsList.filter((item) => {
+      const matchedName = itemObject.name
+        ? item.name.toLowerCase().startsWith(itemObject.name.toLowerCase())
+        : true;
+      const matchedMinExperience = itemObject.minExperience
+        ? item.experience >= itemObject.minExperience
+        : true;
+      const matchedMaxExperience = itemObject.maxExperience
+        ? item.experience <= itemObject.maxExperience
+        : true;
+      return matchedName && matchedMinExperience && matchedMaxExperience;
+    });
   },
 };
 export const actions = {
   loadItemsData({ commit }, dataList) {
     commit("setItemsData", dataList);
   },
-  deleteItem({ commit }, itemId) {
-    commit("deleteItem", itemId);
+  deleteItem({ commit }, { arrayName, itemId }) {
+    commit("deleteItem", { arrayName, itemId });
   },
-  addNewItem({ commit }, itemData) {
-    commit("addNewItem", itemData);
+  addNewItem({ commit }, { arrayName, itemData }) {
+    commit("addNewItem", { arrayName, itemData });
   },
-  updateItem({ commit }, itemData) {
-    commit("updateItem", itemData);
+  updateItem({ commit }, { arrayName, itemData }) {
+    commit("updateItem", { arrayName, itemData });
+  },
+  filterItems({ commit }, itemObject) {
+    commit("filterItems", itemObject);
   },
 };

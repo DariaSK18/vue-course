@@ -1,13 +1,21 @@
 <template>
   <div>
-    <h1>Drivers View</h1>
+    <!-- <h1>Drivers View</h1> -->
     <h3>Our drivers :</h3>
     <div class="filter">
       <label for="#">Full Name</label>
-      <input type="text" placeholder="Full Name" />
+      <input type="text" placeholder="Full Name" v-model="driverFilter.name" />
       <label for="#">Experience :</label>
-      <input type="number" placeholder="min" />
-      <input type="number" placeholder="max" />
+      <input
+        type="number"
+        placeholder="min"
+        v-model="driverFilter.minExperience"
+      />
+      <input
+        type="number"
+        placeholder="max"
+        v-model="driverFilter.maxExperience"
+      />
     </div>
     <table>
       <thead>
@@ -35,7 +43,7 @@
             <div
               aria-label="delete"
               class="icon"
-              @click="deleteItem(driver.id)"
+              @click="deleteItem({ arrayName: 'itemsList', itemId: driver.id })"
             >
               ❌
             </div>
@@ -58,11 +66,32 @@ import { mapGetters, mapActions } from "vuex";
 import { drivers } from "../../constants/depotData";
 export default {
   name: "DriversView",
+  data() {
+    return {
+      driverFilter: {
+        name: "",
+        minExperience: null,
+        maxExperience: null,
+      },
+    };
+  },
   computed: {
     ...mapGetters("driversStore", ["getItemsData"]),
   },
   methods: {
-    ...mapActions("driversStore", ["loadItemsData", "deleteItem"]),
+    ...mapActions("driversStore", [
+      "loadItemsData",
+      "deleteItem",
+      "filterItems",
+    ]),
+  },
+  watch: {
+    driverFilter: {
+      handler(newVal) {
+        this.filterItems(newVal);
+      },
+      deep: true,
+    },
   },
   created() {
     this.loadItemsData(drivers);
