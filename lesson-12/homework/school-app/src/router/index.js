@@ -22,40 +22,26 @@ const routes = [
     },
   },
   {
-    path: "/teachers/:id_list*",
+    path: "/teachers/:lessons_ids*",
     name: "teachers",
     component: TeachersView,
     props: (route) => ({
-      lessonsIdsList: Array.isArray(route.params.id_list)
-        ? route.params.id_list.map((id) => parseInt(id))
-        : [parseInt(route.params.id_list)],
+      lessonsIdsList: Array.isArray(route.params.lessons_ids)
+        ? route.params.lessons_ids.map((id) => parseInt(id))
+        : [parseInt(route.params.lessons_ids)],
     }),
     meta: {
       requiresAuth: true,
     },
-    // children: [
-    //   {
-    //     path: "course",
-    //     name: "course",
-    //     component: CourseView,
-    //     props: (route) => ({
-    //       lessonsIdsList: route.params.lessonsIdsList.map((id) => parseInt(id)),
-    //       teachersIdsList: route.params.teachersIdsList.map((id) =>
-    //         parseInt(id)
-    //       ),
-    //     }),
-    //   },
-    // ],
   },
   {
-    path: "/course/:teachers_ids*",
+    path: "/course/:pairs*",
     name: "course",
     component: CourseView,
     props: (route) => ({
-      // lessonsIdsList: route.params.lessonsIdsList,
-      // .map((id) => parseInt(id)),
-      teachersIdsList: route.params.teachers_ids,
-      // .map((id) => parseInt(id)),
+      lessonTeacherPairs: route.params.pairs.map((str) =>
+        str.split("-").map(Number)
+      ),
     }),
   },
   {

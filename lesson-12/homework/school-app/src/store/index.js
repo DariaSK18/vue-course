@@ -10,6 +10,10 @@ export default createStore({
     getLessonsList: ({ lessonsList }) => lessonsList,
     getTeachersList: ({ teachersList }) => teachersList,
     getUserName: ({ userName }) => userName,
+    getLessonById: (state) => (lessonId) =>
+      state.lessonsList.find((lesson) => lesson.id == lessonId),
+    getTeacherById: (state) => (teacherId) =>
+      state.teachersList.find((teacher) => teacher.id == teacherId),
   },
   mutations: {
     setData(state, { arrayName, itemData }) {

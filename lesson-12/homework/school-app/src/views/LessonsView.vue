@@ -19,7 +19,7 @@
         :to="{
           name: 'teachers',
           params: {
-            id_list: selectedLessonsIdList,
+            lessons_ids: selectedLessonsIdList,
           },
         }"
         class="button-text"

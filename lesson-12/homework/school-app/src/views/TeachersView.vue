@@ -25,8 +25,11 @@
         :to="{
           name: 'course',
           params: {
-            // lessonsIdsList: lessonsIdsList,
-            teachers_ids: teachersIdsList,
+            pairs: Object.entries(teachersIdsList).map(
+              ([lessonId, teacherId]) => `${lessonId}-${teacherId}`
+            ),
+            // lessonsIdsList: Object.entries(lessonsIdsList),
+            // teachers_ids: Object.values(teachersIdsList),
           },
         }"
         class="button-text"
@@ -36,6 +39,7 @@
     <!-- {{ makeLessonsList }} -->
     <!-- {{ makeTeachersList(2) }} -->
   </div>
+  <!-- <router-view></router-view> -->
 </template>
 
 <script>
