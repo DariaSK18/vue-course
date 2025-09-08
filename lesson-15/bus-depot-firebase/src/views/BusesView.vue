@@ -12,11 +12,10 @@
               {{ bus.seatCount }}
               <router-link
                 :to="{
-                  name: 'home',
-                  // name: 'edit',
-                  // params: {
-                  //   id: driver.id,
-                  // },
+                  name: 'edit',
+                  params: {
+                    id: bus.id,
+                  },
                 }"
                 aria-label="edit"
                 class="icon"
@@ -57,10 +56,6 @@ export default {
 <style scoped>
 .icon {
   cursor: pointer;
-}
-.button-add {
-  padding: 10px;
-  text-decoration: none;
 }
 .box {
   display: flex;

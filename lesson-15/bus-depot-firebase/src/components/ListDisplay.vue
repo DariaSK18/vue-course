@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <div>
       <h3><slot name="list-title"></slot></h3>
       <!-- <drivers-layout> -->
@@ -29,6 +29,11 @@ export default {
 </script>
 
 <style scoped>
+.container {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
 .box {
   display: flex;
   gap: 20px;
@@ -45,5 +50,12 @@ tr {
 table {
   width: 300px;
   margin: 30px 10px;
+}
+button {
+  padding: 10px;
+  border: 1px solid white;
+  background: #000;
+  color: white;
+  cursor: pointer;
 }
 </style>

@@ -13,11 +13,10 @@
               {{ driver.experience }}
               <router-link
                 :to="{
-                  name: 'home',
-                  // name: 'edit',
-                  // params: {
-                  //   id: driver.id,
-                  // },
+                  name: 'edit',
+                  params: {
+                    id: driver.id,
+                  },
                 }"
                 aria-label="edit"
                 class="icon"
@@ -58,12 +57,6 @@ export default {
 <style scoped>
 .icon {
   cursor: pointer;
-}
-.button-add {
-  padding: 10px;
-  border: 1px solid black;
-  color: black;
-  text-decoration: none;
 }
 .box {
   display: flex;
