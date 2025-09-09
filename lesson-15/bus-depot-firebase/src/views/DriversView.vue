@@ -13,7 +13,7 @@
               {{ driver.experience }}
               <router-link
                 :to="{
-                  name: 'edit',
+                  name: 'editDriver',
                   params: {
                     id: driver.id,
                   },
@@ -28,7 +28,7 @@
             </td>
           </tr>
         </template>
-        <template v-slot:add-btn>Add Driver</template>
+        <template v-slot:add-btn><router-link :to="{name: 'editDriver'}">Add Driver</router-link></template>
       </list-display>
     </drivers-layout>
   </div>

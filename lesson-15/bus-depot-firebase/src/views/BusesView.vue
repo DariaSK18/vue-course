@@ -12,7 +12,7 @@
               {{ bus.seatCount }}
               <router-link
                 :to="{
-                  name: 'edit',
+                  name: 'editBus',
                   params: {
                     id: bus.id,
                   },
@@ -27,7 +27,7 @@
             </td>
           </tr>
         </template>
-        <template v-slot:add-btn>Add Bus</template>
+        <template v-slot:add-btn><router-link :to="{name: 'editBus'}">Add Bus</router-link></template>
       </list-display>
     </buses-layout>
   </div>

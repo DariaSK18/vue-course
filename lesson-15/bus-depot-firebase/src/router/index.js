@@ -3,7 +3,8 @@ import HomeView from "../views/HomeView.vue";
 import DriversView from "../views/DriversView.vue";
 import BusesView from "../views/BusesView.vue";
 import AssignmentView from "../views/AssignmentView.vue";
-import EditComponent from "@/components/EditComponent.vue";
+import EditDriver from "@/components/EditDriver.vue";
+import EditBus from "@/components/EditBus.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -29,9 +30,14 @@ const router = createRouter({
       component: AssignmentView,
     },
     {
-      path: "/edit/:id?",
-      name: "edit",
-      component: EditComponent,
+      path: "/edit-driver/:id?",
+      name: "editDriver",
+      component: EditDriver,
+    },
+    {
+      path: "/edit-bus/:id?",
+      name: "editBus",
+      component: EditBus,
     },
     {
       path: "/contacts",
