@@ -34,8 +34,8 @@ export default {
   data() {
     return {
       busData: {
-        name: "",
-        experience: 0,
+        regPlate: "",
+        seatCount: 0,
       },
     };
   },
