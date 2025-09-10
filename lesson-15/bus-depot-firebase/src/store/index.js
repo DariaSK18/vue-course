@@ -6,5 +6,6 @@ export default createStore({
   modules: {
     drivers: getModuleSettingsObject("drivers"),
     buses: getModuleSettingsObject("buses"),
+    assignedValues: getModuleSettingsObject("assignedValues"),
   },
 });
