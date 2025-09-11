@@ -34,12 +34,12 @@ const router = createRouter({
   ],
 })
 
-// router.beforeEach(async (to) => {
-//   if(to.meta?.requiredAuth) {
-//     let isAuth = store.state.auth.user
-//     if(!isAuth) isAuth = await store.dispatch('auth/loginWithCredential')
-//     if(!isAuth) return {name:'login'}
-//   }
-// })
+router.beforeEach(async (to) => {
+  if(to.meta?.requiredAuth) {
+    let isAuth = store.state.auth.user
+    if(!isAuth) isAuth = await store.dispatch('auth/loginWithCredential')
+    if(!isAuth) return {name:'login'}
+  }
+})
 
 export default router

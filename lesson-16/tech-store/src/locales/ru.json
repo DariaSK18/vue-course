@@ -4,7 +4,10 @@
     "products": "Товары",
     "contacts": "Контакты",
     "language": "Язык : ",
-    "login": "Войти"
+    "login": "Войти",
+    "logout": "Выйти",
+    "cancel": "Отмена",
+    "loginGoogle": "Войти с Google"
   },
   "footer": {
     "text": "Спасибо за посещение нашего веб-сайта!"

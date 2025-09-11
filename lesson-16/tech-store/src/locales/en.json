@@ -4,7 +4,10 @@
     "products": "Products",
     "contacts": "Contacts",
     "language": "Language : ",
-    "login": "Login"
+    "login": "Login",
+    "logout": "Logout",
+    "cancel": "Cancel",
+    "loginGoogle": "Login with Google"
   },
   "footer": {
     "text": "Thank you for visiting our website!"

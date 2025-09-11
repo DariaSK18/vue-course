@@ -15,7 +15,13 @@
             </option>
           </select>
         </label>
-        <router-link :to="{ name: 'login' }">{{ $t('menu.login') }}</router-link>
+        <div class="user" v-if="getUser">
+          <span>{{ getUser.displayName }}</span>
+          <img :src="getUser.photoURL" alt="photo" />
+          <button @click="onLogout">{{ $t('menu.logout') }}</button>
+        </div>
+        <button v-else @click="onLogin">{{ $t('menu.login') }}</button>
+        <!-- <router-link :to="{ name: 'login' }">{{ $t('menu.login') }}</router-link> -->
       </div>
     </header>
     <main class="main">
@@ -26,11 +32,32 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'MainLayout',
   computed: {
+    ...mapGetters('auth', ['getUser']),
     availableLocales() {
       return Object.keys(this.$i18n.messages)
+    },
+  },
+  methods: {
+    ...mapActions('auth', ['loginWithGoogle', 'logout']),
+    onLogout() {
+      this.logout()
+      this.$router.push({
+        name: 'login',
+      })
+    },
+    async onLogin() {
+      try {
+        await this.loginWithGoogle()
+        this.$router.push({
+          name: 'home',
+        })
+      } catch (error) {
+        console.error(error.messages)
+      }
     },
   },
   watch: {
@@ -55,6 +82,7 @@ export default {
 
 <style lang="scss" scoped>
 .container {
+  margin: 0 auto;
   max-width: 1200px;
   padding: 0 10px;
   display: flex;
@@ -65,6 +93,7 @@ export default {
     padding: 10px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     .navigation {
       display: flex;
       gap: 30px;
@@ -75,8 +104,18 @@ export default {
       color: darkslategrey;
     }
     .profile {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      .user{
         display: flex;
-        gap: 20px;
+        gap: 10px;
+        align-items: center;
+        img {
+          border-radius: 50%;
+          width: 40px;
+        }
+      }
     }
   }
   .main {
