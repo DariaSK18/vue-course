@@ -1,0 +1,12 @@
+{
+  "menu": {
+    "home": "Home",
+    "products": "Products",
+    "contacts": "Contacts",
+    "language": "Language : ",
+    "login": "Login"
+  },
+  "footer": {
+    "text": "Thank you for visiting our website!"
+  }
+}
