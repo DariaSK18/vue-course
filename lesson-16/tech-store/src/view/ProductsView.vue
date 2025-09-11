@@ -1,15 +1,17 @@
 <template>
-    <div>
-ProductsView
-    </div>
+  <div>
+    <products-list />
+  </div>
 </template>
 
 <script>
-    export default {
-        name:'ProductsView'
-    }
+import ProductsList from '@/components/products/ProductsList.vue'
+export default {
+  name: 'ProductsView',
+  components: {
+    ProductsList,
+  },
+}
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

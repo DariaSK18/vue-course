@@ -26,8 +26,10 @@ export default {
   },
   actions: {
     loadUserPermissions({ commit, rootGetters }, userId) {
-      userId ??= rootGetters['bar/someGetter'].getUser.uid
-      collectionDB.getItemById(userId).then((permissions) => {
+      // console.log(rootGetters['auth/getUser'].uid);
+      
+      userId ??= rootGetters['auth/getUser'].uid
+      collectionDB.loadItemById(userId).then((permissions) => {
         commit('setPermissions', permissions)
       })
     },

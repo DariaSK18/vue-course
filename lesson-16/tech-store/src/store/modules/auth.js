@@ -25,8 +25,8 @@ export default {
   },
   actions: {
     async saveLoginUserData({ commit }, loginResult) {
-      console.log('loginResult')
-      console.log(loginResult)
+      // console.log('loginResult')
+      // console.log(loginResult)
       //--------- user data -------
       const user = loginResult?.user // об'єкт користувача
       commit('setUser', user)
