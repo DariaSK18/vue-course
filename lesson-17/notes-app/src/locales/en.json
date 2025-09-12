@@ -1,0 +1,13 @@
+{
+  "menu": {
+    "home": "Home",
+    "friends": "Friends",
+    "gifts": "Gifts",
+    "notes": "Notes",
+    "language": "Language"
+  },
+  "home": {
+    "title": "Welcome to the main page!",
+    "text": "You can save gift ideas for friends in the app! Create a list of friends and gifts, and once you select the desired gift you can assaign it to a specific friend. You can always edit your lists and notes at any time. Enjoy using the app!"
+  }
+}
